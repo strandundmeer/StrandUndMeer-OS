@@ -1,11 +1,11 @@
 # image will be published to ghcr.io/<user>/<name>
 name: strandundmeer-os
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Aurora Stable customized with nextcloud
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/aurora
-image-version: latest # latest is also supported if you want new updates ASAP
+image-version: stable # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -31,8 +31,6 @@ modules:
       #- firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
       - tailscale
       - restic
-      - zsh
-      - plasma-wallpapers-dynamic-builder-zsh-completion
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
