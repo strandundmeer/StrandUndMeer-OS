@@ -4,7 +4,8 @@ name: strandundmeer-os
 description: Aurora Stable customized with nextcloud
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/aurora
+#base-image: ghcr.io/ublue-os/aurora
+base-image: fedora:fedora/40/x86_64/kinoite
 image-version: stable # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -22,6 +23,13 @@ modules:
     install:
       - nextcloud-client
       - nextcloud-client-dolphin
+      - distrobox
+      - kmod-nvidia
+      - ksshaskpass
+      - rpmfusion-free-release 
+      - rpmfusion-nonfree-release 
+      - xorg-x11-drv-nvidia
+      - xorg-x11-drv-nvidia-cuda
       # - micro
       # - starship
     remove:
@@ -29,8 +37,8 @@ modules:
       # "firefox" is the main package, "firefox-langpacks" is a dependency
       #- firefox
       #- firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
-      - tailscale
-      - restic
+      #- tailscale
+      #- restic
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
@@ -47,10 +55,10 @@ modules:
       # only normal flatpak applications are (like Floorp Lightning web browser in this example).
       # Installing different branches of the same Flatpak is not supported.
       remove:
-        - org.fedoraproject.MediaWriter
-        - org.gnome.DejaDup
-        - org.gnome.World.PikaBackup
-        - org.kde.kontact
+      #  - org.fedoraproject.MediaWriter
+      #  - org.gnome.DejaDup
+      #  - org.gnome.World.PikaBackup
+      #  - org.kde.kontact
       # - org.gnome.eog
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
